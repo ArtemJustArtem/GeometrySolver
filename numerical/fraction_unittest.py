@@ -189,6 +189,18 @@ class MyTestCase(unittest.TestCase):
         expected = True
         self.assertEqual(expected, result)
 
+    def test_reverse(self):
+        test = Fraction(5, 15)
+        result = test.reverse()
+        expected = Fraction(15, 5)
+        self.assertEqual(expected, result)
+
+    def test_reverse_zero(self):
+        test = Fraction(0, 15)
+        result = test.reverse()
+        expected = Fraction(0, 1)
+        self.assertEqual(expected, result)
+
 
 if __name__ == '__main__':
     unittest.main()

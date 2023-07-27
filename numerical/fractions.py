@@ -31,6 +31,12 @@ class Fraction:
                 self.denominator = int(self.denominator / num)
                 break
 
+    def reverse(self):
+        if self.numerator != 0:
+            return Fraction(self.denominator, self.numerator)
+        else:
+            return Fraction(0, 1)
+
     def __add__(self, other):
         pass
 
