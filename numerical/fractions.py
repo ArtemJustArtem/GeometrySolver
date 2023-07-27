@@ -1,18 +1,32 @@
 class Fraction:
     def __init__(self, numerator: float | int = 0, denominator: float | int = 1):
-        pass
+        if not (isinstance(numerator, float) or isinstance(numerator, int)):
+            raise TypeError('Numerator must be float or int')
+        if not (isinstance(denominator, float) or isinstance(denominator, int)):
+            raise TypeError('Denominator must be float or int')
+        if denominator == 0:
+            raise ZeroDivisionError("Denominator must not be zero")
+        self.numerator = numerator
+        self.denominator = denominator
 
     def __str__(self):
-        pass
+        return f'{self.numerator}/{self.denominator}'
 
     def __float__(self):
-        pass
+        return self.numerator / self.denominator
 
     def __int__(self):
-        pass
+        return int(self.__float__())
 
-    def simplify(self):
-        pass
+    def simplify(self): #raises errors
+        while int(self.numerator) != self.numerator or int(self.denominator) != self.denominator:
+            self.numerator *= 10
+            self.denominator *= 10
+        for num in range(1, self.denominator + 1, -1):
+            if self.numerator % num == 0:
+                self.numerator = int(self.numerator / num)
+                self.denominator = int(self.denominator / num)
+                break
 
     def __add__(self, other):
         pass
@@ -27,7 +41,10 @@ class Fraction:
         pass
 
     def __eq__(self, other):
-        pass
+        if not isinstance(other, Fraction):
+            return False
+        else:
+            return float(self) == float(other)
 
     def __ne__(self, other):
-        pass
+        return not self.__eq__(other)
