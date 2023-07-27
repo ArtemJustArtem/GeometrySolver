@@ -6,11 +6,16 @@ class Fraction:
             raise TypeError('Denominator must be float or int')
         if denominator == 0:
             raise ZeroDivisionError("Denominator must not be zero")
-        self.numerator = numerator
-        self.denominator = denominator
+        self.positive = ((numerator >= 0 and denominator >= 0) or (numerator < 0 and denominator < 0))
+        self.numerator = abs(numerator)
+        self.denominator = abs(denominator)
 
     def __str__(self):
-        return f'{self.numerator}/{self.denominator}'
+        if self.positive:
+            temp = ''
+        else:
+            temp = '-'
+        return f'{temp}{self.numerator}/{self.denominator}'
 
     def __float__(self):
         return self.numerator / self.denominator
@@ -18,11 +23,11 @@ class Fraction:
     def __int__(self):
         return int(self.__float__())
 
-    def simplify(self): #raises errors
+    def simplify(self):
         while int(self.numerator) != self.numerator or int(self.denominator) != self.denominator:
             self.numerator *= 10
             self.denominator *= 10
-        for num in range(1, self.denominator + 1, -1):
+        for num in range(1, int(self.denominator + 1), -1):
             if self.numerator % num == 0:
                 self.numerator = int(self.numerator / num)
                 self.denominator = int(self.denominator / num)

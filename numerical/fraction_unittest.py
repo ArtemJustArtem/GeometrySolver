@@ -47,15 +47,15 @@ class MyTestCase(unittest.TestCase):
 
     def test_simplify_floats(self):
         test = Fraction(1, 0.5)
-        result = test.simplify()
+        test.simplify()
         expected = Fraction(2, 1)
-        self.assertEqual(expected, result)
+        self.assertEqual(expected, test)
 
     def test_simplify_ints(self):
         test = Fraction(17, 34)
-        result = test.simplify()
+        test.simplify()
         expected = Fraction(1, 2)
-        self.assertEqual(expected, result)
+        self.assertEqual(expected, test)
 
     def test_add(self):
         a = Fraction(1, 2)
