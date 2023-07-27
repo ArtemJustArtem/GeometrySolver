@@ -57,18 +57,30 @@ class MyTestCase(unittest.TestCase):
         expected = Fraction(1, 2)
         self.assertEqual(expected, test)
 
-    def test_add(self):
+    def test_add_fraction(self):
         a = Fraction(1, 2)
         b = Fraction(3, 4)
         result = a + b
         expected = Fraction(5, 4)
         self.assertEqual(expected, result)
 
-    def test_sub(self):
+    def test_add_number(self):
+        a = Fraction(3, 4)
+        result = a + 1.5
+        expected = Fraction(9, 4)
+        self.assertEqual(expected, result)
+
+    def test_sub_fraction(self):
         a = Fraction(1, 2)
         b = Fraction(3, 4)
         result = a - b
         expected = Fraction(-1, 4)
+        self.assertEqual(expected, result)
+
+    def test_sub_number(self):
+        a = Fraction(3, 4)
+        result = a - 1.5
+        expected = Fraction(-3, 4)
         self.assertEqual(expected, result)
 
     def test_mul_fraction(self):
@@ -84,11 +96,17 @@ class MyTestCase(unittest.TestCase):
         expected = Fraction(9, 8)
         self.assertEqual(expected, result)
 
-    def test_truediv(self):
+    def test_truediv_fraction(self):
         a = Fraction(4, 7)
         b = Fraction(4, 2)
         result = a / b
         expected = Fraction(2, 7)
+        self.assertEqual(expected, result)
+
+    def test_truediv_number(self):
+        a = Fraction(3, 4)
+        result = a / 1.5
+        expected = Fraction(1, 2)
         self.assertEqual(expected, result)
 
     def test_eq(self):

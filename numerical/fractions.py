@@ -6,11 +6,9 @@ class Fraction:
             raise TypeError('Denominator must be float or int')
         if denominator == 0:
             raise ZeroDivisionError("Denominator must not be zero")
-        if (numerator >= 0 and denominator >= 0) or (numerator < 0 and denominator < 0):
-            self.numerator = abs(numerator)
-        else:
-            self.numerator = -abs(numerator)
-        self.denominator = abs(denominator)
+        self.numerator = numerator
+        self.denominator = denominator
+        self.simplify()
 
     def __str__(self):
         return f'{self.numerator}/{self.denominator}'
@@ -22,6 +20,11 @@ class Fraction:
         return int(self.__float__())
 
     def simplify(self):
+        if (self.numerator >= 0 and self.denominator >= 0) or (self.numerator < 0 and self.denominator < 0):
+            self.numerator = abs(self.numerator)
+        else:
+            self.numerator = -abs(self.numerator)
+        self.denominator = abs(self.denominator)
         while int(self.numerator) != self.numerator or int(self.denominator) != self.denominator:
             self.numerator *= 10
             self.denominator *= 10
@@ -38,10 +41,30 @@ class Fraction:
             return Fraction(0, 1)
 
     def __add__(self, other):
-        pass
+        result = Fraction()
+        if isinstance(other, Fraction):
+            result.numerator = self.numerator * other.denominator + other.numerator*self.denominator
+            result.denominator = self.denominator*other.denominator
+        elif isinstance(other, int) or isinstance(other, float):
+            result.numerator = self.numerator + self.denominator*other
+            result.denominator = self.denominator
+        else:
+            raise TypeError('Fraction can be added only to fraction or number')
+        result.simplify()
+        return result
 
     def __sub__(self, other):
-        pass
+        result = Fraction()
+        if isinstance(other, Fraction):
+            result.numerator = self.numerator * other.denominator - other.numerator * self.denominator
+            result.denominator = self.denominator * other.denominator
+        elif isinstance(other, int) or isinstance(other, float):
+            result.numerator = self.numerator - self.denominator * other
+            result.denominator = self.denominator
+        else:
+            raise TypeError('Fraction can be added only to fraction or number')
+        result.simplify()
+        return result
 
     def __mul__(self, other):
         result = Fraction()
@@ -57,7 +80,17 @@ class Fraction:
         return result
 
     def __truediv__(self, other):
-        pass
+        result = Fraction()
+        if isinstance(other, Fraction):
+            result.numerator = self.numerator * other.denominator
+            result.denominator = self.denominator * other.numerator
+        elif isinstance(other, int) or isinstance(other, float):
+            result.numerator = self.numerator
+            result.denominator = self.denominator * other
+        else:
+            raise TypeError('Fraction can be added only to fraction or number')
+        result.simplify()
+        return result
 
     def __eq__(self, other):
         if not isinstance(other, Fraction):
