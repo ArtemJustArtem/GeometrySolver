@@ -58,13 +58,13 @@ class Fraction:
         return not self.__eq__(other)
 
     def __gt__(self, other):
-        pass
+        return float(self) > float(other)
 
     def __ge__(self, other):
-        pass
+        return float(self) >= float(other)
 
     def __lt__(self, other):
-        pass
+        return float(self) < float(other)
 
     def __le__(self, other):
-        pass
+        return float(self) <= float(other)
