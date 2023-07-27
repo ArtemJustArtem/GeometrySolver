@@ -99,6 +99,90 @@ class MyTestCase(unittest.TestCase):
         expected = False
         self.assertEqual(expected, result)
 
+    def test_gt_less(self):
+        a = Fraction(1, 2)
+        b = Fraction(3, 4)
+        result = (a > b)
+        expected = False
+        self.assertEqual(expected, result)
+
+    def test_gt_greater(self):
+        a = Fraction(3, 4)
+        b = Fraction(1, 2)
+        result = (a > b)
+        expected = True
+        self.assertEqual(expected, result)
+
+    def test_gt_equal(self):
+        a = Fraction(2, 4)
+        b = Fraction(1, 2)
+        result = (a > b)
+        expected = False
+        self.assertEqual(expected, result)
+
+    def test_ge_less(self):
+        a = Fraction(1, 2)
+        b = Fraction(3, 4)
+        result = (a >= b)
+        expected = False
+        self.assertEqual(expected, result)
+
+    def test_ge_greater(self):
+        a = Fraction(3, 4)
+        b = Fraction(1, 2)
+        result = (a >= b)
+        expected = True
+        self.assertEqual(expected, result)
+
+    def test_ge_equal(self):
+        a = Fraction(2, 4)
+        b = Fraction(1, 2)
+        result = (a >= b)
+        expected = True
+        self.assertEqual(expected, result)
+
+    def test_lt_less(self):
+        a = Fraction(1, 2)
+        b = Fraction(3, 4)
+        result = (a < b)
+        expected = True
+        self.assertEqual(expected, result)
+
+    def test_lt_greater(self):
+        a = Fraction(3, 4)
+        b = Fraction(1, 2)
+        result = (a < b)
+        expected = False
+        self.assertEqual(expected, result)
+
+    def test_lt_equal(self):
+        a = Fraction(2, 4)
+        b = Fraction(1, 2)
+        result = (a < b)
+        expected = False
+        self.assertEqual(expected, result)
+
+    def test_le_less(self):
+        a = Fraction(1, 2)
+        b = Fraction(3, 4)
+        result = (a <= b)
+        expected = True
+        self.assertEqual(expected, result)
+
+    def test_le_greater(self):
+        a = Fraction(3, 4)
+        b = Fraction(1, 2)
+        result = (a <= b)
+        expected = False
+        self.assertEqual(expected, result)
+
+    def test_le_equal(self):
+        a = Fraction(2, 4)
+        b = Fraction(1, 2)
+        result = (a <= b)
+        expected = True
+        self.assertEqual(expected, result)
+
 
 if __name__ == '__main__':
     unittest.main()

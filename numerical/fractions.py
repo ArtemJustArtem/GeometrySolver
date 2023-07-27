@@ -18,7 +18,10 @@ class Fraction:
         return f'{temp}{self.numerator}/{self.denominator}'
 
     def __float__(self):
-        return self.numerator / self.denominator
+        if self.positive:
+            return self.numerator / self.denominator
+        else:
+            return -self.numerator / self.denominator
 
     def __int__(self):
         return int(self.__float__())
@@ -53,3 +56,15 @@ class Fraction:
 
     def __ne__(self, other):
         return not self.__eq__(other)
+
+    def __gt__(self, other):
+        pass
+
+    def __ge__(self, other):
+        pass
+
+    def __lt__(self, other):
+        pass
+
+    def __le__(self, other):
+        pass
