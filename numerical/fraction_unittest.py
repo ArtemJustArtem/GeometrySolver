@@ -71,11 +71,17 @@ class MyTestCase(unittest.TestCase):
         expected = Fraction(-1, 4)
         self.assertEqual(expected, result)
 
-    def test_mul(self):
+    def test_mul_fraction(self):
         a = Fraction(4, 7)
         b = Fraction(1, 2)
         result = a * b
         expected = Fraction(2, 7)
+        self.assertEqual(expected, result)
+
+    def test_mul_number(self):
+        a = Fraction(3, 4)
+        result = a * 1.5
+        expected = Fraction(9, 8)
         self.assertEqual(expected, result)
 
     def test_truediv(self):

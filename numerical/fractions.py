@@ -6,22 +6,17 @@ class Fraction:
             raise TypeError('Denominator must be float or int')
         if denominator == 0:
             raise ZeroDivisionError("Denominator must not be zero")
-        self.positive = ((numerator >= 0 and denominator >= 0) or (numerator < 0 and denominator < 0))
-        self.numerator = abs(numerator)
+        if (numerator >= 0 and denominator >= 0) or (numerator < 0 and denominator < 0):
+            self.numerator = abs(numerator)
+        else:
+            self.numerator = -abs(numerator)
         self.denominator = abs(denominator)
 
     def __str__(self):
-        if self.positive:
-            temp = ''
-        else:
-            temp = '-'
-        return f'{temp}{self.numerator}/{self.denominator}'
+        return f'{self.numerator}/{self.denominator}'
 
     def __float__(self):
-        if self.positive:
-            return self.numerator / self.denominator
-        else:
-            return -self.numerator / self.denominator
+        return self.numerator / self.denominator
 
     def __int__(self):
         return int(self.__float__())
@@ -30,8 +25,8 @@ class Fraction:
         while int(self.numerator) != self.numerator or int(self.denominator) != self.denominator:
             self.numerator *= 10
             self.denominator *= 10
-        for num in range(1, int(self.denominator + 1), -1):
-            if self.numerator % num == 0:
+        for num in range(int(self.denominator), 0, -1):
+            if self.numerator % num == 0 and self.denominator % num == 0:
                 self.numerator = int(self.numerator / num)
                 self.denominator = int(self.denominator / num)
                 break
@@ -43,7 +38,17 @@ class Fraction:
         pass
 
     def __mul__(self, other):
-        pass
+        result = Fraction()
+        if isinstance(other, Fraction):
+            result.numerator = self.numerator * other.numerator
+            result.denominator = self.denominator * other.denominator
+        elif isinstance(other, int) or isinstance(other, float):
+            result.numerator = self.numerator * other
+            result.denominator = self.denominator
+        else:
+            raise TypeError('Fraction can be added only to fraction or number')
+        result.simplify()
+        return result
 
     def __truediv__(self, other):
         pass
