@@ -112,3 +112,16 @@ class Fraction:
 
     def __le__(self, other):
         return float(self) <= float(other)
+
+
+if __name__ == '__main__':
+    a = float(input('first numerator: '))
+    b = float(input('first denominator: '))
+    c = float(input('second numerator: '))
+    d = float(input('second denominator: '))
+    first = Fraction(a, b)
+    second = Fraction(c, d)
+    print(f'{first} + {second} = {first + second} ({float(first + second)})')
+    print(f'{first} - {second} = {first - second} ({float(first - second)})')
+    print(f'{first} * {second} = {first * second} ({float(first * second)})')
+    print(f'{first} / {second} = {first / second} ({float(first / second)})')
