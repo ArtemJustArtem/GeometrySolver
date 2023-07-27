@@ -96,7 +96,7 @@ class Fraction:
         if not isinstance(other, Fraction):
             return False
         else:
-            return float(self) == float(other)
+            return self.numerator == other.numerator and self.denominator == other.denominator
 
     def __ne__(self, other):
         return not self.__eq__(other)
